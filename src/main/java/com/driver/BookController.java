@@ -20,7 +20,6 @@ public class BookController {
 
     private List<Book> bookList;
     private  int id;
-    private static int idGenerator=1;
 
     public List<Book> getBookList() {
 
@@ -52,7 +51,8 @@ public class BookController {
     @PostMapping("/create-book")
     public ResponseEntity<Book> createBook(@RequestBody Book book){
         // Your code goes here.
-        book.setId(idGenerator++);
+        book.setId(this.id);
+        this.id=this.id+1;
         bookList.add(book);
         return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
@@ -98,6 +98,7 @@ public class BookController {
     public ResponseEntity<String> deleteAllBooks(){
         // Your code goes here.
         bookList.clear();
+        this.id=1;
         return new ResponseEntity<>("Success",HttpStatus.OK);
     }
 
