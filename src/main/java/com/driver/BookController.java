@@ -54,6 +54,8 @@ public class BookController {
         book.setId(this.id);
         this.id=this.id+1;
         bookList.add(book);
+
+        System.out.println("CHECKING SUBMISSION");
         return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
